@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: tpch
+    database: SNOWFLAKE_SAMPLE_DATA
+    schema: TPCH_SF1
+    tables:
+      - name: customer
+      - name: orders
+
+models:
+  - name: stg_customer
+    description: "Staging model for customer table"
+    columns:
+      - name: c_custkey
+        description: "Primary key of customer"
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_orders
+    description: "Staging model for orders table"
+    columns:
+      - name: o_orderkey
+        description: "Primary key of order"
+        tests:
+          - not_null
